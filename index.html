@@ -11,55 +11,110 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="phone-frame">
-        <div class="phone-container">
-            <header class="header">
-                <button class="icon-btn" id="menuBtn" aria-label="Menu de idiomas">
-                    <span class="material-symbols-outlined">language</span>
-                </button>
-                <h1 class="title">Tradutor</h1>
-                <button class="icon-btn theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
-                    <span class="material-symbols-outlined">dark_mode</span>
-                </button>
-            </header>
+    <div class="app-container">
+        <aside class="sidebar desktop-only">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="material-symbols-outlined">translate</span>
+                    <span class="logo-text">TRADUTOR</span>
+                </div>
+            </div>
+
+            <div class="sidebar-menu">
+                <span class="sidebar-title">MENU PRINCIPAL</span>
+                <nav class="nav-links">
+                    <a href="#" class="nav-item active" data-page="translate">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="nav-label">Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="history">
+                        <span class="material-symbols-outlined">history</span>
+                        <span class="nav-label">Histórico</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="favorites">
+                        <span class="material-symbols-outlined">star</span>
+                        <span class="nav-label">Favoritos</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-menu">
+                <span class="sidebar-title">PREFERÊNCIAS</span>
+                <nav class="nav-links">
+                    <button class="nav-item theme-toggle sidebar-btn toggle-mode">
+                        <div class="switch-track">
+                            <div class="switch-thumb"></div>
+                        </div>
+                        <span class="nav-label theme-text">Tema Escuro</span>
+                    </button>
+                    <button class="nav-item sidebar-btn" onclick="alert('Funcionalidade em desenvolvimento')">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="nav-label">Sair</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=Jeanderson&background=ffd3b6&color=333" alt="Avatar" class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">jeanderson</span>
+                        <span class="user-email">silvajeanderson165...</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="phone-frame">
+            <div class="phone-container">
+                <header class="header mobile-only">
+                    <button class="icon-btn" id="menuBtn" aria-label="Menu de idiomas">
+                        <span class="material-symbols-outlined">language</span>
+                    </button>
+                    <h1 class="title">Tradutor</h1>
+                    <button class="icon-btn theme-toggle" aria-label="Alternar tema claro/escuro">
+                        <span class="material-symbols-outlined">dark_mode</span>
+                    </button>
+                </header>
 
             <main class="main-content">
-                <div class="translate-card">
-                    <div class="card-header">
-                        <span class="card-label">DE</span>
-                        <select class="language-select" id="langFrom" aria-label="Idioma de origem">
-                            <option value="pt-BR">Português (pt-BR)</option>
-                            <option value="en-US">Inglês (en-US)</option>
-                            <option value="es-ES">Espanhol (es-ES)</option>
-                            <option value="fr-FR">Francês (fr-FR)</option>
-                            <option value="de-DE">Alemão (de-DE)</option>
-                            <option value="it-IT">Italiano (it-IT)</option>
-                            <option value="ja-JP">Japonês (ja-JP)</option>
-                            <option value="ko-KR">Coreano (ko-KR)</option>
-                        </select>
+                <div class="translation-wrapper">
+                    <div class="translate-card">
+                        <div class="card-header">
+                            <span class="card-label">DE</span>
+                            <select class="language-select" id="langFrom" aria-label="Idioma de origem">
+                                <option value="pt-BR">Português (pt-BR)</option>
+                                <option value="en-US">Inglês (en-US)</option>
+                                <option value="es-ES">Espanhol (es-ES)</option>
+                                <option value="fr-FR">Francês (fr-FR)</option>
+                                <option value="de-DE">Alemão (de-DE)</option>
+                                <option value="it-IT">Italiano (it-IT)</option>
+                                <option value="ja-JP">Japonês (ja-JP)</option>
+                                <option value="ko-KR">Coreano (ko-KR)</option>
+                            </select>
+                        </div>
+                        <div class="text-area-wrapper">
+                            <textarea id="inputText" class="text-area" placeholder="Digite aqui..." maxlength="5000" aria-label="Texto para traduzir"></textarea>
+                        </div>
+                        <div class="card-footer">
+                            <span class="char-counter" id="inputCounter">0 / 5000</span>
+                            <button class="icon-btn-small" id="copyInputBtn" title="Copiar texto original" aria-label="Copiar texto original">
+                                <span class="material-symbols-outlined">content_copy</span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="text-area-wrapper">
-                        <textarea id="inputText" class="text-area" placeholder="Digite aqui..." maxlength="5000" aria-label="Texto para traduzir"></textarea>
-                    </div>
-                    <div class="card-footer">
-                        <span class="char-counter" id="inputCounter">0 / 5000</span>
-                        <button class="icon-btn-small" id="copyInputBtn" title="Copiar texto original" aria-label="Copiar texto original">
-                            <span class="material-symbols-outlined">content_copy</span>
+
+                    <div class="action-buttons">
+                        <button class="swap-btn" id="swapBtn" title="Trocar idiomas" aria-label="Trocar idiomas">
+                            <span class="material-symbols-outlined">swap_horiz</span>
+                        </button>
+                        <button class="translate-btn" id="translateBtn" aria-label="Traduzir texto">
+                            <span class="btn-text">Traduzir</span>
+                            <span class="material-symbols-outlined">translate</span>
                         </button>
                     </div>
-                </div>
 
-                <div class="action-buttons">
-                    <button class="swap-btn" id="swapBtn" title="Trocar idiomas" aria-label="Trocar idiomas">
-                        <span class="material-symbols-outlined">swap_vert</span>
-                    </button>
-                    <button class="translate-btn" id="translateBtn" aria-label="Traduzir texto">
-                        <span class="btn-text">Traduzir</span>
-                        <span class="material-symbols-outlined">translate</span>
-                    </button>
-                </div>
-
-                <div class="translate-card output-card">
+                    <div class="translate-card output-card">
                     <div class="card-header">
                         <span class="card-label">PARA</span>
                         <select class="language-select output-select" id="langTo" aria-label="Idioma de destino">
@@ -84,6 +139,7 @@
                         <button class="icon-btn-small" id="copyOutputBtn" title="Copiar tradução" aria-label="Copiar tradução">
                             <span class="material-symbols-outlined">content_copy</span>
                         </button>
+                    </div>
                     </div>
                 </div>
 
@@ -154,6 +210,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <script src="script.js"></script>
 </body>

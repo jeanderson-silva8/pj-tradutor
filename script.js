@@ -21,7 +21,7 @@ const elements = {
     swapBtn: document.getElementById('swapBtn'),
     copyInputBtn: document.getElementById('copyInputBtn'),
     copyOutputBtn: document.getElementById('copyOutputBtn'),
-    themeToggle: document.getElementById('themeToggle'),
+    themeToggles: document.querySelectorAll('.theme-toggle'),
     menuBtn: document.getElementById('menuBtn'),
     inputCounter: document.getElementById('inputCounter'),
     outputCounter: document.getElementById('outputCounter'),
@@ -31,7 +31,8 @@ const elements = {
     phoneContainer: document.querySelector('.phone-container'),
     mainContent: document.querySelector('.main-content'),
     html: document.documentElement,
-    themeIcon: document.querySelector('#themeToggle .material-symbols-outlined'),
+    themeIcons: document.querySelectorAll('.theme-toggle .material-symbols-outlined'),
+    themeTexts: document.querySelectorAll('.theme-text'),
 };
 
 // ========================================
@@ -175,7 +176,14 @@ async function copyToClipboard(text) {
 function toggleTheme() {
     const isDark = elements.html.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    elements.themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    elements.themeIcons.forEach(icon => {
+        icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    });
+    if (elements.themeTexts) {
+        elements.themeTexts.forEach(text => {
+            text.textContent = isDark ? 'Tema Claro' : 'Tema Escuro';
+        });
+    }
     showNotification(isDark ? 'Modo escuro ativado' : 'Modo claro ativado', 'info');
     vibrate(20);
 }
@@ -232,9 +240,11 @@ function loadTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     if (savedTheme === 'dark') {
         elements.html.classList.add('dark');
-        elements.themeIcon.textContent = 'light_mode';
+        elements.themeIcons.forEach(icon => icon.textContent = 'light_mode');
+        if (elements.themeTexts) elements.themeTexts.forEach(text => text.textContent = 'Tema Claro');
     } else {
-        elements.themeIcon.textContent = 'dark_mode';
+        elements.themeIcons.forEach(icon => icon.textContent = 'dark_mode');
+        if (elements.themeTexts) elements.themeTexts.forEach(text => text.textContent = 'Tema Escuro');
     }
 }
 
@@ -648,8 +658,8 @@ function initEventListeners() {
         elements.copyOutputBtn.addEventListener('click', () => copyToClipboard(elements.outputText.value));
     }
 
-    if (elements.themeToggle) {
-        elements.themeToggle.addEventListener('click', toggleTheme);
+    if (elements.themeToggles.length > 0) {
+        elements.themeToggles.forEach(btn => btn.addEventListener('click', toggleTheme));
     }
 
     if (elements.inputText) {
@@ -681,10 +691,13 @@ function initEventListeners() {
 
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
+            const page = item.getAttribute('data-page');
+            if (!page) return; // Ignora botões que não são de navegação (como Tema Escuro e Sair)
+            
             e.preventDefault();
             document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
             item.classList.add('active');
-            handleNavigation(item.getAttribute('data-page'));
+            handleNavigation(page);
         });
     });
 
