@@ -7,6 +7,8 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
+🟢 **LIVE DEMO:** [Acesse o PJ Tradutor Ao Vivo Aqui](https://pj-tradutor.vercel.app)
+
 ---
 
 ## 🗣️ Sobre o Projeto
