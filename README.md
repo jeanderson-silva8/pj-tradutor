@@ -56,6 +56,35 @@ Basta abrir o `index.html` no navegador ou acessar o deploy:
 
 ---
 
+## 🚀 Como Executar Localmente
+
+### Requisitos
+- Qualquer navegador web moderno (Chrome, Firefox, Edge, Opera, Safari, etc.)
+
+### Rodando
+
+Como este projeto é construído apenas com HTML, CSS e JavaScript puros (sem dependências ou compilação), você pode executá-lo de três maneiras simples:
+
+**Opção 1 (Direto no Navegador):**
+Basta abrir o arquivo `index.html` diretamente em seu navegador dando um duplo clique sobre ele.
+
+**Opção 2 (Com VS Code Live Server):**
+Se estiver utilizando o VS Code, instale a extensão **Live Server**, abra a pasta do projeto e clique em **"Go Live"** no canto inferior direito para rodar o tradutor com recarregamento em tempo real.
+
+**Opção 3 (Servidor Local Rápido):**
+Caso tenha o Node.js ou Python instalados, execute na raiz do projeto:
+
+*Com Node.js (npx serve):*
+```bash
+npx serve .
+```
+
+*Com Python:*
+```bash
+python -m http.server 8000
+```
+Em seguida, acesse http://localhost:8000 ou a porta correspondente no seu navegador.
+
 ## 📄 Licença
 
 Projeto para portfólio. Desenvolvido por **Jeanderson Silva**.
